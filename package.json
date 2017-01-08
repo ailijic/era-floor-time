@@ -1,0 +1,38 @@
+{
+  "name": "era-floor-time",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^7.0.0"
+  },
+  "description": "Employee Shift Scheduler for ERA Central",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node $npm_package_main",
+    "test": "istanbul cover _mocha -- -u bdd -R spec test/**/*",
+    "posttest": "istanbul-coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ailijic/era-floor-time"
+  },
+  "author": "ailijic",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ailijic/capstone-node/issues"
+  },
+  "homepage": "https://github.com/ailijic/capstone-node#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "fullcalendar": "^3.1.0",
+    "moment": "^2.17.1",
+    "mongoose": "^4.7.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "istanbul": "^0.4.5",
+    "istanbul-coveralls": "^1.0.3",
+    "mocha": "^3.2.0"
+  }
+}
