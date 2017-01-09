@@ -2,6 +2,7 @@ start();
 function start () {
   'use strict';
 
+  const root = Object.freeze({ root: process.cwd() });
   const express = require('express');
   const router = express.Router();
 
@@ -11,8 +12,8 @@ function start () {
   });
 
   router.get('/', (req, res) => {
-    res.sendFile('./public/login.hrml');
+    res.sendFile('/public/login.html', root);
   });
 
-  exports = router;
+  module.exports = router;
 }
