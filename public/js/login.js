@@ -13,7 +13,6 @@ function start () {
         username,
         password
       };
-      console.log(loginObj);
       $.post({
         url: '/login',
         data: JSON.stringify(loginObj),
