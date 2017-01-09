@@ -8,7 +8,7 @@ Automate the scheduling of shifts for the ERA Central up-call desk using a web p
 ### Level I
 - [X] As a user, I should be able to access the system via a web browser
 - As a user, I should be able to sign up to the shift portal
-- As a user, I should be able to log in to the shift portal
+- [ ] As a user, I should be able to log in to the shift portal
 - As a user, I should be able to log in with my Google account
 - As a user, I should be able to see what days and times I am scheduled
 - As a user, I should be able to select what days I can not work
