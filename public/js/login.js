@@ -18,8 +18,16 @@ function start () {
         data: JSON.stringify(loginObj),
         dataType: 'JSON',
         contentType: 'application/json; charset=utf-8',
-        success: (result) => console.log(result)
+        success: response.process
       });
     });
   });
+  const response = {
+    process: function (data, status) {
+      $('#login').append(`
+        <p> Status: ${status} </p>
+        <p> Data: ${data} </p>
+      `);
+    }
+  };
 }
