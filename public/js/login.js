@@ -13,10 +13,12 @@ function start () {
         username,
         password
       };
+      console.log(loginObj);
       $.post({
         url: '/login',
-        data: loginObj,
+        data: JSON.stringify(loginObj),
         dataType: 'JSON',
+        contentType: "application/json; charset=utf-8",
         sucess: (result) => console.log(result)
       });
     });
