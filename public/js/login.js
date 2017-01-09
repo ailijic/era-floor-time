@@ -19,7 +19,7 @@ function start () {
         data: JSON.stringify(loginObj),
         dataType: 'JSON',
         contentType: "application/json; charset=utf-8",
-        sucess: (result) => console.log(result)
+        success: (result) => console.log(result)
       });
     });
   });
