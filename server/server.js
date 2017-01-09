@@ -7,6 +7,9 @@ function start () {
 
   // app.use(bodyParser.json());
   app.use(express.static('public'));
+
+  const login = require(`${__dirname}/routes/login`);
+  app.use('/login', login);
   
   app.listen(process.env.PORT || 8080);
 }
