@@ -17,7 +17,7 @@ function start () {
         url: '/login',
         data: JSON.stringify(loginObj),
         dataType: 'JSON',
-        contentType: "application/json; charset=utf-8",
+        contentType: 'application/json; charset=utf-8',
         success: (result) => console.log(result)
       });
     });
