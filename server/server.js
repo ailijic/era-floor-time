@@ -1,16 +1,12 @@
-start();
-function start () {
-  'use strict';
+(function start() {
+    "use strict";
 
-  const express = require('express');
-  const app = express();
+    const express = require("express");
+    const login = require(`${__dirname}/routes/login`);
+    const app = express();
 
-  // app.use(bodyParser.json());
-  app.use(express.static('public'));
+    app.use(express.static("public"));
+    app.use("/login", login);
 
-  const login = require(`${__dirname}/routes/login`);
-  app.use('/login', login);
-  
-  app.listen(process.env.PORT || 8080);
-}
-
+    app.listen(process.env.PORT || 8080);
+}());
