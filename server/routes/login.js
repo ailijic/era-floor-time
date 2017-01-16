@@ -5,10 +5,10 @@
     const express = require("express");
     const router = new express.Router();
     const bodyParser = require("body-parser");
+    const jwt = require("jsonwebtoken");
 
     router.use(bodyParser.json());
-    router.use(function timeLog(req, res, next) {
-        console.log(`${Date.now()}: Login Request`);
+    router.use(function (req, res, next) {
         next();
     });
 
