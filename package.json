@@ -7,7 +7,7 @@
   "description": "Employee Shift Scheduler for ERA Central",
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon --verbose --watch server/",
+    "start": "nodemon --verbose --watch server/ --watch database/",
     "test": "istanbul cover _mocha -- -u bdd -R spec test/**/*",
     "posttest": "istanbul-coveralls"
   },
