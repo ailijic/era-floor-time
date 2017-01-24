@@ -30,7 +30,7 @@ function isNoon (num) { return ! isEven(num); };
 
 dec = new Schedule();
 //let startOfMonth = moment("2016-12-01");
-let day = new Date("2016-12-01T12:00:00");
+let day = new Date("2017-01-01T12:00:00");
 // day.setUTCHours(day.getUTCHours() - 5);
 //let day = () => { return startOfMonth; };
 const mornWeekStart = 9;
