@@ -3,48 +3,69 @@ function start() {
     "use strict";
 
     $("form").submit((event) => {
+        const accountObj = {
+            firstName:          ($("#firstName").val()).trim(),
+            lastName:           ($("#lastName").val()).trim(),
+            email:              ($("#email").val()).trim(),
+            username:           ($("#username").val()).trim(),
+            password:           ($("#password").val()).trim(),
+            passwordVerify:     ($("#passwordVerify").val()).trim()
+        };
+
         event.preventDefault();
-        const username = $("#username").val().trim;
-        const password = $("#password").val().trim;
-        const passwordVerify = $("#passwordVerify").val();
-        if (! isValidPassword(password)) {
-            $("#passwordVerify").append("<p> Password Invalid </p>");
-            return;
-        } else if (! doPasswordsMatch(password, passwordVerify)) {
-            $("#passwordVerify").append("<p> Passwords do not match </p>");
-            return;
+
+        if (! isValidPassword(accountObj.password)) {
+            // console.log("invalid password");
+            // $("#passwordVerify").append("<p> Password Invalid </p>");
+            errorMsg("Invalid Password");
+        } else if (! doPasswordsMatch(accountObj.password,
+                accountObj.passwordVerify)) {
+            // console.log("passwords do not Match");
+            errorMsg("Passwords do not match");
         } else {
+            delete accountObj.passwordVerify,
+
             $.post(
-                "/api/create-account", 
-                { username, password },
+                "/api/create-account",
+                accountObj,
                 processResponse,
                 "json"
             );
-            return;
         }
-        // $.post({
-            // url: "/login/auth",
-            // data: JSON.stringify(loginObj),
-            // dataType: "JSON",
-            // contentType: "application/json; charset=utf-8",
-            // success: response.process
-        // });
     });
 
     function  isValidPassword(password) {
-        return password !== null && password !== undefined;
+        return (
+            password !== null
+            && password !== undefined
+            && password !== ""
+        );
     }
 
     function doPasswordsMatch(pass1, pass2) {
         return pass1 === pass2;
     }
 
-    function processResponse(data, status) {
-        console.log(status);
-        console.log(data);
-        // $("#login").append(`
-            // <p> Status: ${status} </p>
-            // <p> Data: ${data} </p>
-        // `);
+    function errorMsg(msg) {
+        removeMessages();
+        addMessage(msg);
+    }
+
+    function removeMessages() {
+        $(".msg").children().remove();
+    }
+
+    function addMessage(msg) {
+        $(".msg").append(
+            $("<p></p>").text(msg)
+        )
+    }
+
+    function processResponse(data, status, jqXHR) {
+        // console.log(status);
+        // console.log(data);
+
+        removeMessages();
+        addMessage(`Status: ${status}`);
     }
 }
