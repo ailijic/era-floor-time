@@ -1,5 +1,5 @@
 function Shift (start, end, user) {
-  return { start, end, user };
+    return { start, end, title: user };
 }
 function Schedule () {
   this.scheduleArray = [];
@@ -81,4 +81,4 @@ console.log(day);
 console.log(dec);
 let fs = require('fs')
 delete dec.add;
-fs.writeFile('cal-data.json', JSON.stringify(dec));
+fs.writeFile('cal-data.json', JSON.stringify(dec.scheduleArray));
