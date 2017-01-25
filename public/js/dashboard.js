@@ -6,9 +6,10 @@ function start() {
 
     function renderCalendar(eventsObj) {
         $('#calendar').fullCalendar({
-            events: eventsObj.scheduleArray,
+            events: eventsObj,
             color: "yellow",
             textColor: "black",
+            displayEventEnd: true,
             timezone: "local"
         });
     }
