@@ -1,41 +1,50 @@
-start();
-function start () {
-  'use strict';
+$(document).ready(start);
+function start() {
+    "use strict";
+
+    $("form").submit((event) => {
+        event.preventDefault();
+        const username = $("#username").val().trim;
+        const password = $("#password").val().trim;
+        const passwordVerify = $("#passwordVerify").val();
+        if (! isValidPassword(password)) {
+            $("#passwordVerify").append("<p> Password Invalid </p>");
+            return;
+        } else if (! doPasswordsMatch(password, passwordVerify)) {
+            $("#passwordVerify").append("<p> Passwords do not match </p>");
+            return;
+        } else {
+            $.post(
+                "/api/create-account", 
+                { username, password },
+                processResponse,
+                "json"
+            );
+            return;
+        }
+        // $.post({
+            // url: "/login/auth",
+            // data: JSON.stringify(loginObj),
+            // dataType: "JSON",
+            // contentType: "application/json; charset=utf-8",
+            // success: response.process
+        // });
+    });
+
+    function  isValidPassword(password) {
+        return password !== null && password !== undefined;
+    }
 
     function doPasswordsMatch(pass1, pass2) {
-        const password1 = pass1.trim();
-        const password2 = pass2.trim();
-        return password1 === password2;
+        return pass1 === pass2;
     }
 
-  $(document).ready(() => {
-    $('form').submit(event => {
-      event.preventDefault();
-      const username = $('#username').val();
-      const password = $('#password').val();
-      const passwordVerify = $('#passwordVerify').val();
-        if(!doPasswordsMatch(password, passwordVerify)) {
-            $('#passwordVerify').append("<p>Passwords do not match</p>");
-        }
-      const loginObj = {
-        username,
-        password
-      };
-      $.post({
-          url: '/login/auth',
-        data: JSON.stringify(loginObj),
-        dataType: 'JSON',
-        contentType: 'application/json; charset=utf-8',
-        success: response.process
-      });
-    });
-  });
-  const response = {
-    process: function (data, status) {
-      $('#login').append(`
-        <p> Status: ${status} </p>
-        <p> Data: ${data} </p>
-      `);
+    function processResponse(data, status) {
+        console.log(status);
+        console.log(data);
+        // $("#login").append(`
+            // <p> Status: ${status} </p>
+            // <p> Data: ${data} </p>
+        // `);
     }
-  };
 }
