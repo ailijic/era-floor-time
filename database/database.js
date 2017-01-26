@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 function add(credentials) {
+    // TODO: If the record already exists log in the user
     const newRecord = new UserModel(credentials);
     newRecord.isNew = false;
     return newRecord.save();
