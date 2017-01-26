@@ -1,12 +1,13 @@
 "use strict";
 
+const UserModel = require(`${__dirname}/models/user`);
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-const UserModel = require(`${__dirname}/models/user`);
 
 function add(credentials) {
     const newRecord = new UserModel(credentials);
-    return newRecord.save().exec();
+    newRecord.isNew = false;
+    return newRecord.save();
 }
 
 function isMatch(userInput, dbRecord) {
