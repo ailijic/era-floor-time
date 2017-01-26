@@ -61,11 +61,19 @@ function start() {
         )
     }
 
+    /**
+     *  Handel the response from the server
+     *  @arg data
+     *  @arg status
+     *  @arg jqXHR
+     */
     function processResponse(data, status, jqXHR) {
+        // TODO: Delete console.log later
         // console.log(status);
         // console.log(data);
+        // console.log(jqXHR);
 
         removeMessages();
-        addMessage(`Status: ${status}`);
+        addMessage(data.message);
     }
 }
