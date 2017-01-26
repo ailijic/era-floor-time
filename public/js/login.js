@@ -9,6 +9,9 @@ function start() {
             $(".msg").append(
                 $("<p></p>").text(data.message)
             );
+            if (data.success) {
+                window.location = "/dashboard.html";
+            }
         }
     };
 
