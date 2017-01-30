@@ -22,6 +22,13 @@ function isMatch(userInput, dbRecord) {
     return ret;
 }
 
+function setAvailability(username, boolArray) {
+    const conditions    = { username }
+        , update        = { availability: boolArray }
+
+    return UserModel.update(conditions, update).exec();
+}
+
 function verify(credentials) {
     return UserModel.findOne(credentials).exec()
         .then(function (dbRecord) {
@@ -34,7 +41,8 @@ function verify(credentials) {
 
 const user = {
     add,
-    verify
+    verify,
+    setAvailability
 };
 
 mongoose.connect("mongodb://localhost/era-shift-db-dev");
