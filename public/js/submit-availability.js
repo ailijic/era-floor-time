@@ -1,49 +1,83 @@
+"use strict";
+
+const submitBtn = new Button("#submitButton");
+
+function Button(elementString) {
+    this.jQuery = $(elementString);
+    return this;
+}
+Button.prototype.property = "disabled";
+Button.prototype.setPropTo = function setPropTo(bool) {
+    this.jQuery.prop(this.property, bool);
+    return this;
+};    
+Button.prototype.enable = function enable() {
+    this.setPropTo(false);
+    return this;
+}
+Button.prototype.disable = function disable() {
+    this.setPropTo(true);
+    return this;
+}
+
+function renderCalendar(eventsObj) {
+    const nextMonth = moment().add(1, "months");
+    $('#calendar').fullCalendar({
+        events: eventsObj,
+        displayEventEnd: true,
+        defaultDate: nextMonth,
+        eventClick: toggleColor,
+        timezone: "local"
+    });
+}
+
+function reRender() {
+    $("#calendar").fullCalendar("rerenderEvents");
+}
+
+function colorToBool(obj) {
+    return obj.color === "green";
+}
+
+function sendAvailability(event) {
+    const availabilityObj = $("#calendar")
+        .fullCalendar("clientEvents")
+        .map(colorToBool);
+
+    submitBtn.disable();
+    $("#sending").show();
+    // TODO: send token as HTTP cookie
+    $.post(
+        "/api/user/set-availability",
+        { availability: availabilityObj },
+        responseHandler,
+        "json"
+    );
+}
+
 function start() {
-    "use strict";
-
-    const currentDate = new Date();
-    const nextMonth = (currentDate) => currentDate.getMonth() + 1;
-
-    function genSubmitButton() {
-        $("#submit")
-            .append(`<button type = "button"> Submit Floor Time </button>`);
-        $("#submit").css("text-align", "center");
-        // TODO: Add event click handler
-    }
-
-    function renderCalendar(eventsObj) {
-        $('#calendar').fullCalendar({
-            events: eventsObj,
-            displayEventEnd: true,
-            defaultDate: moment().add(1, "months"),
-            eventClick: toggleColor,
-            timezone: "local"
-        });
-        reRender();
-    }
-
-    function reRender() {
-        $("#calendar").fullCalendar("rerenderEvents");
-        $(".fc-event").css("height", "3em");
-        $(".fc-day-grid-event").css("white-space", "normal");
-        $(".fc-content").css("white-space", "normal");
-        $("#calendar").css("margin", "0 auto")
-        $("#calendar").css("max-width", "650px")
-    }
-
-    function toggleColor(event, jsEvent, view) {
-        if (event.color === "red") {
-            event.color = "green";
-            event.title = "Available";
-        } else if (event.color === "green") {
-            event.color = "red";
-            event.title = "Unavailable";
-        }
-        reRender();
-    }
-
     $.getJSON("shift-template.json", renderCalendar);
-    genSubmitButton();
+    $("#submitButton").click(sendAvailability);
+    submitBtn.enable();
+}
+
+function responseHandler(data, status, jqXHR) {
+    console.log(data);
+    $("#sending").hide();
+    submitBtn.enable();
+}
+
+function toggleColor(event, jsEvent, view) {
+    if (event.color === "red") {
+        event.color = "green";
+        event.title = "Available";
+    } else if (event.color === "green") {
+        event.color = "red";
+        event.title = "Unavailable";
+    } else {
+        throw new Error("Got an unhandeled color");
+    }
+    reRender();
 }
 
 $(document).ready(start);
