@@ -1,0 +1,16 @@
+.fc-event {
+    height: 3em;
+}
+
+.fc-day-grid-event .fc-content {
+    white-space: normal;
+}
+
+#calendar {
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+.button {
+    text-align: center;
+}
