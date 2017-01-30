@@ -68,8 +68,14 @@ api.post("/user/login", (req, res) => {
 });
 
 api.post("/user/set-availability", (req, res) => {
-    console.log(req.body);
-    res.status(200).json({ success: true, message: "saved availability" });
+    // console.log(req.body);
+    db.user.setAvailability("ailijic", req.body.availability)
+        .then((obj) => {
+            res.status(200)
+                .json({ success: true, message: "saved availability" });
+            console.log("Availability saved to DB");
+        })
+        .catch(console.log);
 });
 
 module.exports = api;
