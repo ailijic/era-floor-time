@@ -20,9 +20,12 @@ Token.prototype.gen = function (username, expireString="24h") {
         });
 };
 Token.prototype.isValid = function (token) {
-    token.then((tokenThen) => {
-        const ret = jwt.verify(tokenThen, this.secret());
-        console.log(ret);
-        return ret;
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, this.secret(), (err, decoded) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(decoded);
+        });
     });
 };
