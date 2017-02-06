@@ -1,16 +1,18 @@
 /* eslint-env jquery */
 
 function start() {
-    'use strict';
+    "use strict";
 
     const response = {
         process: function (data, status) {
+            console.log(data);
             $(".msg").children().remove();
             $(".msg").append(
                 $("<p></p>").text(data.message)
             );
             if (data.success) {
-                window.location = "/dashboard.html";
+                console.log(document.cookie);
+                // window.location = "/dashboard.html";
             }
         }
     };
@@ -36,4 +38,3 @@ function start() {
 }
 
 $(document).ready(start);
-

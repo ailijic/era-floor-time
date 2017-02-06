@@ -11,10 +11,14 @@ function add(credentials) {
     return newRecord.save();
 }
 
+function getUserId(username) {
+    return UserModel.findOne({ username }).exec()
+        .then((obj) => Promise.resolve(obj._id))
+}
+
 function isMatch(userInput, dbRecord) {
     let ret = false;
     if (dbRecord === null) {
-        console.log("AUTH: Record not found");
     } else if (userInput.username === dbRecord.username &&
             userInput.password === dbRecord.password) {
         ret = true;
@@ -32,17 +36,20 @@ function setAvailability(username, boolArray) {
 function verify(credentials) {
     return UserModel.findOne(credentials).exec()
         .then(function (dbRecord) {
-            return isMatch(credentials, dbRecord);
+            const result = isMatch(credentials, dbRecord);
+            if (result) {
+                return Promise.resolve();
+            } else {
+                return Promise.reject();
+            }
         })
-        .catch(function (err) {
-            console.log(`ERR-FUNC(verify): ${err}`);
-        });
 }
 
 const user = {
     add,
     verify,
-    setAvailability
+    setAvailability,
+    getUserId
 };
 
 mongoose.connect("mongodb://localhost/era-shift-db-dev");
