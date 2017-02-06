@@ -2,7 +2,7 @@
     height: 3em;
 }
 
-.fc-day-grid-event .fc-content {
+.fc-day-grid-event, .fc-content {
     white-space: normal;
 }
 
@@ -12,5 +12,23 @@
 }
 
 .button {
+    text-align: center;
+}
+
+img {
+    width: 15%;
+    height: 15%;
+}
+
+h1, a:link, a:visited {
+    margin: 0 auto;
+    color: #808080;
+}
+
+#eraPic {
+    text-align: right;
+}
+
+#headDiv {
     text-align: center;
 }
