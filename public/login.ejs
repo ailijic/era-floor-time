@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> ERA Floor Time </title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+
+<body>
+    <header>
+        <h1 id=heading> ERA Floor Shift Scheduler </h1>
+        <h2> Login </h2>
+    </header>
+
+    <div id="loginForm">
+        <form id="login" action="/api/user/login" method="post">
+            <div> <input name="username" type="text" size="32"
+                        placeholder="Username"> </div>
+            <div> <input name="password" type="password" size="32"
+                        placeholder="Password"> </div>
+            <button id="submit" type="submit"> Submit </button>
+        </form> 
+    </div>
+
+    <div class="msg">
+        <p> <%= msg %> </p>
+    </div>
+
+    <div> <a href="create-account"> Create Account </a> </div>
+</body>
+</html>

@@ -87,9 +87,9 @@
     //     next();
     // });
 
-    router.get("/", function (req, res) {
-        res.sendFile("/public/login.html", {root});
-    });
+    // router.get("/", function (req, res) {
+        // res.sendFile("/public/login.html", {root});
+    // });
 
     router.post("/", function (req) {
         console.log(req.body);

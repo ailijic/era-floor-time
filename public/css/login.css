@@ -1,0 +1,26 @@
+header {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+#loginForm {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+a, #submit, .msg {
+    width: 8em;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+} 
+.msg {
+    width: 100%;
+}
+input {
+    width: 16em;
+    height: 1em;
+    border: 1px solid #999999;
+    padding: 5px;
+}
+
