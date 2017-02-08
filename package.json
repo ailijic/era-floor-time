@@ -7,10 +7,11 @@
   "description": "Employee Shift Scheduler for ERA Central",
   "main": "server/server.js",
   "scripts": {
-    "start": "SET NODE_ENV=dev && nodemon -V -w server/ -w database/ -w modules/ -w config.js -w config/ -i public/ -i private/ ",
+    "start": "NODE_ENV=dev node $npm_package_main",
     "test": "istanbul cover _mocha -- -u bdd -R spec test/**/*",
     "posttest": "istanbul-coveralls",
-    "nyan": "clear && mocha --timeout 10000 --reporter=nyan"
+    "nyan": "clear && mocha --timeout 10000 --reporter=nyan",
+    "nodemon": "NODE_ENV=dev nodemon -V -w server/ -w database/ -w modules/ -w config.js -w config/ -i public/ -i private/"
   },
   "repository": {
     "type": "git",
