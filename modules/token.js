@@ -1,5 +1,5 @@
-const root = process.cwd();
-const db = require(`${root}/database/database`);
+require("rootpath")();
+const db = require("database/database");
 const jwt = require("jsonwebtoken");
 
 module.exports = Token;

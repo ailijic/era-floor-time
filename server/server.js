@@ -1,36 +1,50 @@
 // Require
-const aRoot = process.cwd();
-const api = require(`${__dirname}/routes/api`);
-const authFilter = require(`${aRoot}/modules/auth-filter`);
-const config = require(`${aRoot}/config`);
+require("rootpath")();
+const api = require("server/routes/api");
+const authFilter = require("modules/auth-filter");
+const bodyParser = require("body-parser");
+const config = require("config");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const logger = require("morgan");
-const login = require(`${__dirname}/routes/login`);
-const Secret = require(`${aRoot}/modules/secret`);
+const login = require("server/routes/login");
+const Secret = require("modules/secret");
 
 // Constants
 const app = express();
+const options = { extensions: ["html", "htm"] };
 
 // Main
 app.use(logger("dev"));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser("secret"));
-
-app.use(express.static("public"));
-// app.use(express.static("private"));
-
+app.set("views", "public");
+app.set("view engine", "ejs");
 app.set("secretKey", new Secret().key());
 
-app.use("/login", login);
+app.use("/", express.static("public", options));
+
+app.get("/", (req, res) => {
+    res.redirect("/dashboard");
+})
+
+app.get("/login", (req, res) =>  {
+    // const msg = "Press Submit";
+    const msg = "";
+    res.render("login"
+        , { msg }
+    );
+});
 
 app.use("/api", api);
 
 app.use(authFilter);
 
-app.use(express.static("private"));
+app.use("/", express.static("private", options));
 
-app.get("/secure", (req, res) => {
+app.get("/secure", 
+    (req, res) => {
         res.send("Hello from the secure route!");
     }
 );

@@ -1,12 +1,11 @@
-/* Required */
-const aRoot = process.cwd();
-const bodyParser = require("body-parser");
+// Required
+require("rootpath")();
 const cookieParser = require("cookie-parser");
-const db = require(`${aRoot}/database/database`);
+const db = require("database/database");
 const express = require("express");
-const Token = require(`${aRoot}/modules/token`);
+const Token = require("modules/token");
 
-/* Constants */
+// Constants
 const api = new express.Router();
 const login = {
     fail: {
@@ -25,10 +24,7 @@ const http = {
     "default"  : 200,     // 200: OK
 };
 
-/* Main */
-api.use(bodyParser.json());
-api.use(bodyParser.urlencoded({ extended: false }));
-
+// Main
 api.post("/create-account", (req, res) => {
     console.log("Received create/update account request for: ",
         `${req.body.username}`);
@@ -40,7 +36,7 @@ api.post("/create-account", (req, res) => {
                 .status(http.created)
                 .json({
                     accountCreated : true,
-                    message        : "Account Created"
+                    message        : "Account Created",
                 });
         })
         .catch((obj) => {
@@ -49,12 +45,13 @@ api.post("/create-account", (req, res) => {
                 .status(http.default)
                 .json({
                     accountCreated : false,
-                    message        : "Server Unable to Create Account"
+                    message        : "Server Unable to Create Account",
                 });
         });
 });
 
 api.post("/user/login", function (req, res) {
+    console.log(req.body);
     function makeToken() {
         const token = new Token(req.app.get("secretKey"));
         return Promise.resolve(token);
@@ -63,15 +60,17 @@ api.post("/user/login", function (req, res) {
         .then(makeToken)
         .then((token) => token.gen(req.body.username))
         .then((tokenString) => {
-            // console.log(`Sending token: ${tokenString}`);
-            // console.log(`for user: ${req.body.username}`);
             login.success.token = tokenString;
             res
-                .status(http.accepted)
                 .cookie("token", tokenString)
-                .json(login.success);
+                .redirect(303, "/dashboard");
         })
-        .catch(() => res.status(http.default).json(login.fail));
+        .catch(() => {
+            const msg = "Username / Password Incorrect";
+            res
+                .status(303)
+                .render("login", { msg });
+        });
 });
 
 api.post("/user/set-availability", (req, res) => {
@@ -81,7 +80,7 @@ api.post("/user/set-availability", (req, res) => {
                 .status(http.created)
                 .json({
                     message : "saved availability",
-                    success : true
+                    success : true,
                 });
             console.log("Availability saved to DB");
         })

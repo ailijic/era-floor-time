@@ -1,7 +1,11 @@
 const config = {};
 
-config.web = {};
+config.url = {
+    noAuth: "/login",
+};
 
-config.web.port = process.env.PORT || 8080;
+config.web = {
+    port: process.env.PORT || 8080,
+};
 
-module.exports = config;
+module.exports = Object.freeze(config);
