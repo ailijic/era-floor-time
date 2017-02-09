@@ -1,7 +1,8 @@
-"use strict";
-
-const UserModel = require(`${__dirname}/models/user`);
+// Required
+require("rootpath")();
+const config = require("config");
 const mongoose = require("mongoose");
+const UserModel = require("database/models/user");
 mongoose.Promise = global.Promise;
 
 function add(credentials) {
@@ -52,5 +53,14 @@ const user = {
     getUserId
 };
 
-mongoose.connect("mongodb://localhost/era-shift-db-dev");
+const options = { 
+    server: {
+        socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 },
+    }, 
+    replset: {
+        socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 },
+    },
+};
+
+mongoose.connect(config.DBHost, options);
 module.exports = {user};

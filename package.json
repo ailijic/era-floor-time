@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ailijic/capstone-node#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "config": "^1.25.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
