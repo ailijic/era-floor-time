@@ -1,33 +1,69 @@
+<!-- Page /login -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title> ERA Floor Time </title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link type="text/css" rel="stylesheet" href="/css/login.css">
+    <link type="text/css" rel="stylesheet" href="/css/template.css">
+    <link type="text/css" rel="stylesheet" href="/css/button-login.css">
+    <link rel=icon href=/images/ERA_Favicon_16.ico>
 </head>
 
 <body>
-    <header>
-        <h1 id=heading> ERA Floor Shift Scheduler </h1>
-        <h2> Login </h2>
-    </header>
-
-    <div id="loginForm">
-        <form id="login" action="/api/user/login" method="post">
-            <div> <input name="username" type="text" size="32"
-                        placeholder="Username"> </div>
-            <div> <input name="password" type="password" size="32"
-                        placeholder="Password"> </div>
-            <button id="submit" type="submit"> Submit </button>
-        </form> 
+    <div id="page">
+        <div id="header"><div class="inner">
+            <img
+                src="/images/logo_teamera-network.png"
+                id="headerLogo"
+                align="left"
+                alt="TeamERA Logo"
+            >
+            <h1>ERA CENTRAL REALTY GROUP</h1>
+            <h2>Floor Schedule<h2>
+        </div></div>
+        <div id="nav"><div class="inner">
+            <ul>
+                <li><a href="http://www.eracentral.com">ERA Central</a></li>
+                <li><a href="https://www.teamera.com">Team ERA</a></li>
+            </ul>
+        </div></div>
+        <div class="content"><div class="inner">
+                <div id="main">
+                    <h2>Mission Statement</h2>
+                    <p>The vision of ERA Central Realty Group is to keep front-of-mind the fact that the success of our clients, our agents and our company is interdependent. As an integral part of the lives of our agents and our communities, we remind ourselves that our successes are achieved to enable us to make a difference, regardless of the need. We strive daily to make our company “part of something bigger”.</p>
+                </div>
+                <div id="sidebar">
+                    <h2>Login</h2>
+                    <div id="loginForm">
+                        <form id="login" action="/api/user/login" method="post">
+                            <div> <input name="username" type="text" 
+                                        placeholder="Username"> </div>
+                            <div> <input name="password" type="password" 
+                                        placeholder="Password"> </div>
+                            <button id="submit" class="btn" type="submit"> Submit </button>
+                        </form> 
+                    </div>
+                    <div class="msg">
+                        <p> <%= msg %> </p>
+                    </div>
+                    <div> <a href="create-account"> Create Account </a> </div>
+                </div>
+        </div></div>
+        <div id="footer"><div class="inner">
+                    <img 
+                        src="/images/era-logo.gif"
+                        id="footerLogo"
+                        alt="ERA Franchise Systems"
+                        align="left"
+                    >
+                <p>
+                    © ERA Franchise Systems LLC. All Rights Reserved.
+                </p>
+        </div></div>
     </div>
-
-    <div class="msg">
-        <p> <%= msg %> </p>
-    </div>
-
-    <div> <a href="create-account"> Create Account </a> </div>
 </body>
+
 </html>

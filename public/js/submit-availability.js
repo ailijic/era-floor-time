@@ -23,11 +23,12 @@ Button.prototype.disable = function disable() {
 function renderCalendar(eventsObj) {
     const nextMonth = moment().add(1, "months");
     $('#calendar').fullCalendar({
+        height: "parent",
         events: eventsObj,
         displayEventEnd: true,
         defaultDate: nextMonth,
         eventClick: toggleColor,
-        timezone: "local"
+        timezone: "local",
     });
 }
 

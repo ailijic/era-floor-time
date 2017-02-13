@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const config = require("config");
 const cookieParser = require("cookie-parser");
 const express = require("express");
-const logger = require("morgan");
+const morgan = require("morgan");
 const login = require("server/routes/login");
 const Secret = require("modules/secret");
 
@@ -15,7 +15,9 @@ const app = express();
 const options = { extensions: ["html", "htm"] };
 
 // Main
-app.use(logger("dev"));
+if (config.util.getEnv("NODE_ENV") !== "test") {
+    app.use(morgan("dev"));
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser("secret"));
@@ -30,7 +32,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/login", (req, res) =>  {
-    // const msg = "Press Submit";
+    // const msg = "Invalid Username or Password";
     const msg = "";
     res.render("login"
         , { msg }
@@ -39,7 +41,7 @@ app.get("/login", (req, res) =>  {
 
 app.use("/api", api);
 
-app.use(authFilter);
+// app.use(authFilter);
 
 app.use("/", express.static("private", options));
 
@@ -50,3 +52,6 @@ app.get("/secure",
 );
 
 app.listen(config.web.port);
+console.log(`Listening on port: ${config.web.port}`);
+
+module.exports = app;

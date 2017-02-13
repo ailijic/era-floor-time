@@ -2,45 +2,69 @@
 <html lang = "en" >
 <head>
     <meta charset = "utf-8" >
-    <link
-        rel = 'stylesheet'
-        type = "text/css"
-        href = "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css"
-    >
-    <link
-        rel = "stylesheet"
-        type = "text/css"
-        href = "css/main.css"
-    >
-    <link
-        rel = "stylesheet"
-        type = "text/css"
-        href = "css/submit-availability.css"
-    >
+    <link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" >
+    <link rel = "stylesheet" type = "text/css" href = "css/submit-availability.css" >
+    <link type="text/css" rel="stylesheet" href="/css/template.css">
+    <link type="text/css" rel='stylesheet' href="/css/calendar.css">
+    <link type="text/css" rel='stylesheet' href="/css/dashboard.css">
+    <link type="text/css" rel="stylesheet" href="/css/button-login.css">
+    <link rel=icon href=/images/ERA_Favicon_16.ico>
     <title> ERA Floor Time </title>
 </head>
 <body>
-    <h1> Submit Availability </h1>
-    <div class = "button" id = "submit">
-        <button type = "button" id = "submitButton"> Submit Floor Time </button>
-    </div>
-    <div class = "button" id = "msg">
-        <p id = "sending" class = "pulsate" style = "display: none;"> Sending... </p>
-    </div>
-    <div id = "calendar" ></div>
+    <div id="page">
+        <div id="header"><div class="inner">
+            <img
+                src="/images/logo_teamera-network.png"
+                id="headerLogo"
+                align="left"
+                alt="TeamERA Logo"
+            >
+            <h1>ERA CENTRAL REALTY GROUP</h1>
+            <h2>Floor Schedule<h2>
+        </div></div>
+        <div id="nav"><div class="inner">
+            <ul>
+                <li><a href="http://www.eracentral.com">ERA Central</a></li>
+                <li><a href="https://www.teamera.com">Team ERA</a></li>
+            </ul>
+        </div></div>
+        <div class="content"><div class="inner">
+                <div class = "button" id = "submit">
+                    <button type = "button" class="btn" id = "submitButton"> Submit Floor Time </button>
+                </div>
+                <div class = "button" id = "msg">
+                    <p id = "sending" class = "pulsate" style = "display: none;"> Sending... </p>
+                </div>
+                <div id="main">
+                    <div id="calendar"></div>
+                </div>
+        </div></div>
+        <div id="footer"><div class="inner">
+                    <img 
+                        src="/images/era-logo.gif"
+                        id="footerLogo"
+                        alt="ERA Franchise Systems"
+                        align="left"
+                    >
+                <p>
+                    © ERA Franchise Systems LLC. All Rights Reserved.
+                </p>
+        </div></div>
+
+        <script
+            src = "https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity = "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin = "anonymous" >
+        </script>
+        <script
+            src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js">
+        </script>
+        <script 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js">
+        </script>
+        <script
+            src = "/js/submit-availability.js" >
+        </script>
 </body>
-    <script
-        src = "https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity = "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin = "anonymous" >
-    </script>
-    <script
-        src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js">
-    </script>
-    <script 
-        src = "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js">
-    </script>
-    <script
-        src = "/js/submit-availability.js" >
-    </script>
 </html>

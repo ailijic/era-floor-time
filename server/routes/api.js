@@ -51,7 +51,7 @@ api.post("/create-account", (req, res) => {
 });
 
 api.post("/user/login", function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     function makeToken() {
         const token = new Token(req.app.get("secretKey"));
         return Promise.resolve(token);
@@ -68,8 +68,9 @@ api.post("/user/login", function (req, res) {
         .catch(() => {
             const msg = "Username / Password Incorrect";
             res
-                .status(303)
-                .render("login", { msg });
+                // .status(303)
+                .redirect(303, "/login");
+                // .render("login", { msg });
         });
 });
 

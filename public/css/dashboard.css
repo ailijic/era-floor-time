@@ -1,0 +1,11 @@
+#main {
+    display: block;
+    width: 100%;
+    max-width: none;
+    background: #ffffff;
+    height: 550px;
+    float: none;
+}
+#calendar {
+    margin: auto;
+}

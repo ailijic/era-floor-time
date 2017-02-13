@@ -1,31 +1,77 @@
+<!-- Page /create-account -->
+
 <!DOCTYPE html>
 <html lang = "en" >
-  <head>
+
+<head>
     <meta charset = "utf-8" >
     <title> ERA Floor Time </title>
-  </head>
-  <body>
-    <h1> Create Account </h1>
-    <form id="account">
-      <input id="firstName" type="text" placeholder="First Name">  
-      <br>
-      <input id="lastName" type="text" placeholder="Last Name">  
-      <br>
-      <input id="email" type="email" placeholder="Email">  
-      <br>
-      <input id="username" type="text" placeholder="Username">
-      <br>
-      <input id="password" type="password" placeholder="Password">
-      <input id="passwordVerify" type="password" placeholder="Password">
-      <br>
-      <button type="submit"> Submit </button> 
-    </form>
-    <div class="msg"></div>
-  </body> 
+    <link type="text/css" rel="stylesheet" href="/css/create-account.css">
+    <link type="text/css" rel="stylesheet" href="/css/template.css">
+    <link type="text/css" rel="stylesheet" href="/css/button-login.css">
+    <link rel=icon href=/images/ERA_Favicon_16.ico>
+</head>
+
+<body>
+    <div id="page">
+        <div id="header"><div class="inner">
+            <img
+                src="/images/logo_teamera-network.png"
+                id="headerLogo"
+                align="left"
+                alt="TeamERA Logo"
+            >
+            <h1>ERA CENTRAL REALTY GROUP</h1>
+            <h2>Floor Schedule<h2>
+        </div></div>
+        <div id="nav"><div class="inner">
+            <ul>
+                <li><a href="http://www.eracentral.com">ERA Central</a></li>
+                <li><a href="https://www.teamera.com">Team ERA</a></li>
+            </ul>
+        </div></div>
+        <div class="content"><div class="inner">
+                <div id="main">
+                    <h2>Real Estate</h2>
+                    <blockquote>
+                        In the real estate business you learn more about people, and you learn more about community issues, you learn more about life, you learn more about the impact of government, probaly than any other profession that I know of.
+                        <br>
+                        - Johnny Isakson
+                    </blockquote>
+                </div>
+                <div id="sidebar">
+                    <h2> Create Account </h2>
+                    <form id="account">
+                        <div><input id="firstName" type="text" placeholder="First Name"></div>
+                        <div><input id="lastName" type="text" placeholder="Last Name"></div>
+                        <div><input id="email" type="email" placeholder="Email">  </div>
+                        <div><input id="username" type="text" placeholder="Username"></div>
+                        <div><input id="password" type="password" placeholder="Password"></div>
+                        <div><input id="passwordVerify" type="password" placeholder="Verify Password"></div>
+                        <button class="btn" type="submit"> Submit </button> 
+                    </form>
+                    <div class="msg"></div>
+                </div>
+        </div></div>
+        <div id="footer"><div class="inner">
+                    <img 
+                        src="/images/era-logo.gif"
+                        id="footerLogo"
+                        alt="ERA Franchise Systems"
+                        align="left"
+                    >
+                <p>
+                    © ERA Franchise Systems LLC. All Rights Reserved.
+                </p>
+        </div></div>
+    </div>
     <script src = "https://code.jquery.com/jquery-3.1.1.min.js"
       integrity = "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin = "anonymous" >
     </script>
-    <script src = "/js/create-account.js"> </script>
-</html>
+    <script
+        src = "/js/create-account.js">
+    </script>
+</body>
 
+</html>
